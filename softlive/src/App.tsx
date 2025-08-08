@@ -1,12 +1,44 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ConfigProvider, theme as antTheme, Spin, Result } from "antd";
+import {
+  ConfigProvider,
+  theme as antTheme,
+  Spin,
+  App as AntApp, // 👈 renomeado pra não confundir com o seu componente
+} from "antd";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { Suspense } from "react";
 import { PageProducts } from "./pages/pageProducts";
+import { PageProductForm } from "./pages/pageProductForm";
 
-export const Themeapp = () => {
+// -----------------------------
+// Rotas da aplicação
+// -----------------------------
+const AppRoutes = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-screen">
+          <Spin size="large" />
+        </div>
+      }
+    >
+      <Routes>
+        <Route path="/" element={<PageProducts />} />
+        <Route path="/products" element={<PageProducts />} />
+        <Route path="/products/new" element={<PageProductForm />} />
+        <Route path="/products/edit/:id" element={<PageProductForm />} />
+      </Routes>
+    </Suspense>
+  );
+};
+
+// -----------------------------
+// Componente que aplica tema + rotas
+// -----------------------------
+const ThemeApp = () => {
   const { theme, isDarkMode } = useTheme();
+
   const antDesignTheme = {
     algorithm: isDarkMode ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
     token: {
@@ -23,27 +55,24 @@ export const Themeapp = () => {
 
   return (
     <ConfigProvider theme={antDesignTheme}>
-      <Router>
-        {/* Suspense pode envolver todas as rotas para simplificar */}
-        <Suspense fallback={<Spin size="large" />}>
-          <Routes>
-            {/* --- ROTAS PÚBLICAS (com layout) --- */}
-            <Route path="/" element={<PageProducts />} />
-          </Routes>
-        </Suspense>
-      </Router>
+      <AntApp>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </AntApp>
     </ConfigProvider>
   );
 };
 
-const App = () => {
+// -----------------------------
+// Provider do tema global
+// -----------------------------
+const AppWrapper = () => {
   return (
     <ThemeProvider>
-
-        <Themeapp />
-     
+      <ThemeApp />
     </ThemeProvider>
   );
 };
 
-export default App;
+export default AppWrapper;
