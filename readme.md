@@ -103,5 +103,7 @@ Para executar este projeto no seu ambiente de desenvolvimento, siga os passos ab
 
 5.  Abra [http://localhost:5173](http://localhost:5173) (ou a porta indicada no seu terminal) no seu navegador para ver a aplicação.
 
+6. Link da apicação publicada: https://softlive-teste.vercel.app/products
+
 ---
 
