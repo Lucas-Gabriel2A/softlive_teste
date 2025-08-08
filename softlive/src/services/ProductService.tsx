@@ -12,7 +12,7 @@ import axios from 'axios';
 // CONFIGURAÇÃO DO SERVIÇO
 // ========================================================================
 
-const API_URL = 'https://688f9e5ff21ab1769f89b590.mockapi.io/api/products/products';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,

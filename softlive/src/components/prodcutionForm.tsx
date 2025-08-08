@@ -75,15 +75,6 @@ export const ProductForm = ({ title, initialValues, onFinish, onCancel, loading 
     form.setFieldValue('preco', numericValue);
   };
 
-  // Custom validator para o preço
-  const validatePrice = () => ({
-    validator(_: any, value: any) {
-      if (!value || value <= 0) {
-        return Promise.reject(new Error('Por favor, insira um preço válido!'));
-      }
-      return Promise.resolve();
-    },
-  });
 
   // Função para submissão - garante que o preço seja um número e valida
   const handleFormSubmit = (values: any) => {
