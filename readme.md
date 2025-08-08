@@ -1,4 +1,4 @@
-#  Gestão de Produtos - Aplicação CRUD Completa
+# 🚀 Gestão de Produtos - Aplicação CRUD Completa
 
 ![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0.2-3178C6?logo=typescript)
@@ -16,7 +16,7 @@ O projeto foi concebido para ser não apenas funcional, mas também performátic
 
 ### ✨ Demonstração Visual
 
-![Captura de tela da aplicação a mostrar a tabela de produtos com filtros e paginação](https://i.imgur.com/uCjK5wL.png)
+<img width="2918" height="1304" alt="image" src="https://github.com/user-attachments/assets/de035b39-614e-4451-97db-863541e45316" />
 *A interface principal, a exibir a tabela de produtos com um design limpo, filtros ativos e o modal de exclusão.*
 
 ---
@@ -79,12 +79,12 @@ Para executar este projeto no seu ambiente de desenvolvimento, siga os passos ab
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+    git clone https://github.com/Lucas-Gabriel2A/softlive_teste.git
     ```
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd nome-do-repositorio
+    cd softlive
     ```
 
 3.  **Instale as dependências:**
@@ -104,5 +104,4 @@ Para executar este projeto no seu ambiente de desenvolvimento, siga os passos ab
 5.  Abra [http://localhost:5173](http://localhost:5173) (ou a porta indicada no seu terminal) no seu navegador para ver a aplicação.
 
 ---
-
 
