@@ -13,10 +13,6 @@ interface TableParams {
   sorter?: SorterResult<Product> | SorterResult<Product>[];
 }
 
-// DICA SOBRE O TOAST: Para que o 'notification.error' funcione,
-// certifique-se de que o componente raiz da sua aplicação (geralmente App.tsx)
-// está envolvido pelo componente <App> do Ant Design.
-// Ex: import { App } from 'antd'; ... return <App><YourRoutes /></App>;
 
 export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -30,8 +26,6 @@ export const useProducts = () => {
     sorter: { field: 'id', order: 'descend' },
   });
 
-  // ✅ CORREÇÃO: O useEffect agora é o único responsável por buscar os dados.
-  // Ele é disparado sempre que os parâmetros da tabela ou o gatilho de refetch mudam.
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -47,7 +41,7 @@ export const useProducts = () => {
           order: sorter?.order === 'ascend' ? 'asc' : 'desc',
         };
 
-        // Fazemos as duas chamadas em paralelo para otimizar o tempo de carregamento
+
         const [totalResponse, dataResponse] = await Promise.all([
           productService.getAllFiltered(apiParams),
           productService.getPaginated(apiParams)
@@ -56,8 +50,7 @@ export const useProducts = () => {
         const total = totalResponse.data.length;
         
         setProducts(dataResponse.data);
-        // ✅ CORREÇÃO: A atualização do total da paginação agora é feita de forma segura,
-        // sem recriar o objeto tableParams desnecessariamente, quebrando o loop.
+
         setTableParams(prevParams => ({
           ...prevParams,
           pagination: { 
@@ -78,7 +71,7 @@ export const useProducts = () => {
     fetchData();
   }, [JSON.stringify(tableParams.filters), tableParams.pagination.current, tableParams.pagination.pageSize, tableParams.sorter, refetchTrigger]); // ✅ CORREÇÃO: Dependências mais granulares para evitar o loop.
 
-  // ✅ CORREÇÃO: Esta função agora apenas atualiza o estado. O useEffect fará o resto.
+ 
   const handleTableChange = (
     pagination: TablePaginationConfig,
     filters: Record<string, any>,
@@ -94,8 +87,7 @@ export const useProducts = () => {
     });
   };
 
-  // ✅ CORREÇÃO: Refetch agora simplesmente muda o estado do gatilho,
-  // o que força o useEffect a rodar novamente com os parâmetros atuais.
+ 
   const refetch = () => {
     setRefetchTrigger(c => c + 1);
   };
